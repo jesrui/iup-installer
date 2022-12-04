@@ -80,7 +80,7 @@ iup_sha1sums=(
 	38b57c1e406fd1ab09b1eb31a5b701eb37f02eb0  # iup-3.30_Docs.pdf
 )
 
-PKG_ROOT=win32/x86_64/vc16
+PKG_ROOT=iup-build
 
 filename() {
 	local url=$1
