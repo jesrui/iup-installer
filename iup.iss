@@ -33,3 +33,9 @@ Name: "{group}\Iup Lua Scripter"; Filename: "{app}\bin\iup\Lua54\iupluascripter5
 Name: "{group}\Iup Test"; Filename: "{app}\bin\iup\iuptest.exe"
 Name: "{group}\Iup Help"; Filename: "{app}\doc\iup\iup-3.30_Docs.chm"
 Name: "{group}\Iup Tutorial"; Filename: "{app}\doc\iup\html\examples\tutorial"
+
+[Tasks]
+Name: StartAfterInstall; Description: "Launch Iup Lua Scripter with example file after install"
+
+[Run]
+Filename: "{app}\bin\iup\Lua54\iupluascripter54.exe"; Parameters: "{app}\doc\iup\html\examples\tutorial\example2_1.lua"; Tasks: StartAfterInstall; Flags: nowait postinstall skipifsilent
