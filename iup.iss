@@ -35,7 +35,16 @@ Name: "{group}\Iup Help"; Filename: "{app}\doc\iup\iup-3.30_Docs.chm"
 Name: "{group}\Iup Tutorial"; Filename: "{app}\doc\iup\html\examples\tutorial"
 
 [Tasks]
+Name: LuaFileAssociation; Description: "Associate ""lua"" files with Iup Lua Scripter"
 Name: StartAfterInstall; Description: "Launch Iup Lua Scripter with example file after install"
 
 [Run]
-Filename: "{app}\bin\iup\Lua54\iupluascripter54.exe"; Parameters: "{app}\doc\iup\html\examples\tutorial\example2_1.lua"; Tasks: StartAfterInstall; Flags: nowait postinstall skipifsilent
+Filename: "{app}\bin\iup\Lua54\iupluascripter54.exe"; Parameters: """{app}\doc\iup\html\examples\tutorial\example2_1.lua"""; Tasks: StartAfterInstall; Flags: nowait postinstall skipifsilent
+
+; https://jrsoftware.org/isfaq.php#assoc
+[Registry]
+Root: HKA; Subkey: "Software\Classes\.lua\OpenWithProgids"; ValueType: string; ValueName: "IupLuaScripterFile.lua"; ValueData: ""; Flags: uninsdeletevalue; Tasks: LuaFileAssociation
+Root: HKA; Subkey: "Software\Classes\IupLuaScripterFile.lua"; ValueType: string; ValueName: ""; ValueData: "Lua script"; Flags: uninsdeletekey; Tasks: LuaFileAssociation
+Root: HKA; Subkey: "Software\Classes\IupLuaScripterFile.lua\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\bin\iup\Lua54\iupluascripter54.exe,0"; Tasks: LuaFileAssociation
+Root: HKA; Subkey: "Software\Classes\IupLuaScripterFile.lua\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\bin\iup\Lua54\iupluascripter54.exe"" ""%1"""; Tasks: LuaFileAssociation
+Root: HKA; Subkey: "Software\Classes\Applications\iupluascripter54.exe\SupportedTypes"; ValueType: string; ValueName: ".lua"; ValueData: ""; Tasks: LuaFileAssociation
