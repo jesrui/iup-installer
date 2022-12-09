@@ -1,9 +1,9 @@
 #!/bin/bash
-# Download zip files for iup 3.30 and dependencies from source forge
-# and unpack them in a single dir tree.
+# Download zip files for iup 3.30 and dependencies from sourceforge
+# and unpack them into a single dir tree.
 #
 # Included are static libs and dlls compiled for win32 x64 with vs16,
-# lua 5.4 bindings and their headers, and examples and documentation.
+# headers, Lua 5.4 bindings, examples and documentation.
 #
 #set -euxo pipefail
 set -euo pipefail
@@ -100,16 +100,16 @@ download() {
 		echo fname "$fname" sz "$local_sz"
 
 		local out rc sz
-		out=$(curl --silent --show-error --head --write-out '%{http_code}' "$url")
+		out=$(curl --silent --show-error --head --write-out '%{http_code}' "$url" | tr -d '\r')
 		rc=$(tail -1 <<<"$out")
-		[[ $rc == 200 ]] || exit 1
+		[[ $rc == 200 ]] || { echo "head request failed with code $rc: $url" 1>&2 ; exit 1; }
 		sz=$(sed -nEe 's/content-length: ([0-9]+)/\1/ip' <<<"$out")
 		#echo remote sz "$sz"
 
 		if (( sz != local_sz )); then
 			echo =========================== download "$fname"
 			rc=$(curl --silent --show-error --write-out '%{http_code}' -L -o "$fname" "$url")
-			[[ $rc == 200 ]] || exit 1
+			[[ $rc == 200 ]] || { echo "download failed with code $rc: $url" 1>&2 ; exit 1; }
 		fi
 
 	done
