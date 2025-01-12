@@ -1,17 +1,17 @@
 ; -- iup.iss --
 
-#define AppVersion "3.30"
+#define AppVersion "3.32"
 
 [Setup]
-AppName=Iup DevKit
+AppName=Iup VC17
 AppVersion={#AppVersion}
 WizardStyle=modern
-DefaultDirName={autopf}\iup
+DefaultDirName={autopf}\iup-vc17
 DefaultGroupName=Iup
 ;UninstallDisplayIcon={app}\MyProg.exe
 Compression=lzma2
 SolidCompression=yes
-OutputBaseFilename=IupSetup-{#AppVersion}
+OutputBaseFilename=IupSetup-VC17-{#AppVersion}
 
 ; "ArchitecturesAllowed=x64" specifies that Setup cannot run on
 ; anything but x64.
@@ -23,15 +23,13 @@ ArchitecturesInstallIn64BitMode=x64
 
 
 [Files]
-Source: "iup-build\*"; DestDir: "{app}"; Flags:  recursesubdirs
-;Source: "C:\iup-build\iup\bin\*"; DestDir: "{app}\bin"; Flags:  recursesubdirs
-;Source: "C:\iup-build\iup\doc\*"; DestDir: "{app}\doc"; Flags:  recursesubdirs
+Source: "build\vc17\iup-build\*"; DestDir: "{app}"; Flags:  recursesubdirs
 
 [Icons]
 Name: "{group}\Iup Lua"; Filename: "{app}\bin\iup\Lua54\iuplua54.exe"
 Name: "{group}\Iup Lua Scripter"; Filename: "{app}\bin\iup\Lua54\iupluascripter54.exe"
 Name: "{group}\Iup Test"; Filename: "{app}\bin\iup\iuptest.exe"
-Name: "{group}\Iup Help"; Filename: "{app}\doc\iup\iup-3.30_Docs.chm"
+Name: "{group}\Iup Help"; Filename: "{app}\doc\iup\iup-3.32.chm"
 Name: "{group}\Iup Tutorial"; Filename: "{app}\doc\iup\html\examples\tutorial"
 
 [Tasks]

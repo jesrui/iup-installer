@@ -22,7 +22,7 @@ jobs:
 
     - name: Download Inno Setup
       run: |
-        curl -L -o is.exe "https://jrsoftware.org/download.php/is.exe?site=2" && \
+        curl -L -o is.exe "https://files.jrsoftware.org/is/6/innosetup-6.2.1.exe" && \
         ls -l && \
         sha1sum -c INNOSETUP_MANIFEST.txt
       shell: bash
@@ -41,4 +41,4 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: Output/IupSetup-3.30.exe
+        files: Output/IupSetup-VC17-3.32.exe
