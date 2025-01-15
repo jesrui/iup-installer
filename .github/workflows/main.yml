@@ -15,9 +15,14 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Download Iup
+    - name: Download Iup VC17
       run: |
-        ./install-iup.sh
+        ./install-iup-vc17.sh
+      shell: bash
+
+    - name: Download Iup MinGW6
+      run: |
+        ./install-iup-mingw6.sh
       shell: bash
 
     - name: Download Inno Setup
@@ -32,13 +37,20 @@ jobs:
        is.exe /SP- /VERYSILENT /ALLUSERS /SUPPRESSMSGBOXES /DOWNLOADISCRYPT=1
       shell: cmd
 
-    - name: Build Iup installer
+    - name: Build Iup installer for VC17
       run: |
-        "%programfiles(x86)%\Inno Setup 6\iscc.exe" iup.iss
+        "%programfiles(x86)%\Inno Setup 6\iscc.exe" iup-vc17.iss
+      shell: cmd
+
+    - name: Build Iup installer for MinGW6
+      run: |
+        "%programfiles(x86)%\Inno Setup 6\iscc.exe" iup-mingw6.iss
       shell: cmd
 
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: Output/IupSetup-VC17-3.32.exe
+        files: |
+          Output/IupSetup-VC17-3.32.exe
+          Output/IupSetup-MinGW6-3.32.exe
