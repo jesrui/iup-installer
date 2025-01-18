@@ -1,0 +1,19 @@
+name: Install Inno Setup
+
+runs:
+  using: "composite"
+
+  steps:
+
+    - name: Download Inno Setup
+      run: |
+        curl -L -o is.exe "https://files.jrsoftware.org/is/6/innosetup-6.2.1.exe" && \
+        ls -l && \
+        sha1sum -c INNOSETUP_MANIFEST.txt
+      shell: bash
+
+    - name: Install Inno Setup
+      run: |
+       is.exe /SP- /VERYSILENT /ALLUSERS /SUPPRESSMSGBOXES /DOWNLOADISCRYPT=1
+      shell: cmd
+
