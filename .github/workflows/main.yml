@@ -52,7 +52,7 @@ jobs:
 
     - name: Zip examples
       run: |
-        zip -r examples-mingw6.zip examples\mingw6
+        Compress-Archive -Path examples\mingw6 -Destination examples-mingw6.zip
       shell: powershell
 
     - name: Release
@@ -102,7 +102,7 @@ jobs:
 
     - name: Zip examples
       run: |
-        zip -r examples-vc17.zip examples\vc17
+        Compress-Archive -Path examples\vc17 -Destination examples-vc17.zip
       shell: powershell
 
     - name: Release
