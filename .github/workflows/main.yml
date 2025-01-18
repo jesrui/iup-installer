@@ -50,13 +50,18 @@ jobs:
         done
       shell: msys2 {0}
 
-    # TODO upload a zip archive of compiled examples as artifacts of the release
+    - name: Zip examples
+      run: |
+        zip -r examples-mingw6.zip examples\mingw6
+      shell: powershell
+
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           Output/IupSetup-MinGW6-3.32.exe
+          examples-mingw6.zip
 
   build_vc17:
     runs-on: windows-latest
@@ -95,9 +100,15 @@ jobs:
         ninja
       shell: cmd
 
+    - name: Zip examples
+      run: |
+        zip -r examples-vc17.zip examples\vc17
+      shell: powershell
+
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           Output/IupSetup-VC17-3.32.exe
+          examples-vc17.zip
