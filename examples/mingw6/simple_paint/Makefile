@@ -5,6 +5,7 @@ IUP_HOME= c:\Program Files\iup-mingw6
 LDLIBS= -liup -liupimglib -liupim -liupcd -lcd -lcdim -lim -lim_process -lz -lfreetype6 
 LDLIBS+= -lkernel32 -luser32 -lgdi32 -lwinspool -lcomdlg32 -ladvapi32 -lshell32 -lole32 -loleaut32 -luuid -lcomctl32
 LDFLAGS= -Wl,-subsystem,windows 
+LDFLAGS+= -static -static-libgcc -static-libstdc++
 LDFLAGS+= -L "$(IUP_HOME)\lib\static\iup"
 LDFLAGS+= -L "$(IUP_HOME)\lib\static\im"
 LDFLAGS+= -L "$(IUP_HOME)\lib\static\cd"
